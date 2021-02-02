@@ -1,6 +1,12 @@
 .contacts{
-    flex: 0.25;
-    height: 100%;
+    flex: 0.26 0;
+    min-width: 315px;
+}
+
+@media (max-width:1300px) {
+    .contacts {
+        min-width: auto;
+    }
 }
 
 @media (max-width:900px) {

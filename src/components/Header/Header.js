@@ -30,7 +30,8 @@ function Header() {
                 </button>
             </div>
             <div className="header__center">
-                <div className="header__option header__option--active">
+                <div className='header__options'>
+                    <div className="header__option header__option--active">
                     <div className="header__option__container">
                         <HomeIcon fontSize="large"/>
                     </div> 
@@ -55,6 +56,8 @@ function Header() {
                         <SportsEsportsIcon fontSize="large"/>
                     </div>
                 </div>
+                </div>
+                
                 <div className="header__burger">
                     <MenuIcon/>
                 </div>
