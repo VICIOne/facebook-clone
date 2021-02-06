@@ -4,9 +4,11 @@ import {Avatar} from '@material-ui/core'
 import VideocamIcon from '@material-ui/icons/Videocam';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import MoodIcon from '@material-ui/icons/Mood';
+import {useStateValue} from '../../StateProvider'
 
 function MessageSender() {
-
+    // eslint-disable-next-line
+    const [{user},dispatch] = useStateValue()
     return (
         <div className='messageSender'>
             <div className="messageSender__top">
@@ -14,7 +16,7 @@ function MessageSender() {
                 <form>
                     <input 
                     className="messageSender__input" 
-                    placeholder={`What's on your mind, ${'VICI'}?`}
+                    placeholder={`What's on your mind, ${user.first_name}?`}
                     ></input>
                     <input 
                     placeholder={"image URL (Optional)"}

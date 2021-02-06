@@ -11,6 +11,11 @@
     border-radius: 10px;
 }
 
+.sidebarRow__avatar {
+    height: 30px !important;
+    width: 30px !important;
+}
+
 .sidebarRow>.MuiSvgIcon-root {
     color: #2e81f4;
     font-size: xx-large;
@@ -25,3 +30,4 @@
 .sidebarRow>img{
     height: 30px;
 }
+

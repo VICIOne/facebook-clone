@@ -13,8 +13,11 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
 import {Avatar} from '@material-ui/core'
+import {useStateValue} from '../../StateProvider'
 
 function Header() {
+    // eslint-disable-next-line
+    const [{user},dispatch] = useStateValue()
     return (
         <div className="header">
             <div className="header__left">
@@ -64,8 +67,8 @@ function Header() {
             </div>
             <div className="header__right">
                 <div className="header__info">
-                    <Avatar/>
-                    <h4>{'VICI'}</h4>
+                    <Avatar className='header__avatar' src={user.picture.data.url}/>
+                    <h4>{user.first_name}</h4>
                 </div>
                 <div className="header__buttons">
                     <button className='header__button'>
