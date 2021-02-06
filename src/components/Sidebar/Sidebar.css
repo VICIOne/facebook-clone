@@ -8,6 +8,11 @@
     min-width: 265px;
 }
 
+.sidebar>a{
+    color: black !important;
+    text-decoration: none !important;
+}
+
 .sidebar>hr{
     margin-top: 8px;
     align-self: center;

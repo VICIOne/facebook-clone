@@ -54,6 +54,8 @@
     column-gap: 10px;
 }
 
+
+
 .header__option {
     display: flex;
     width: 120px;
@@ -79,6 +81,10 @@
     border-radius: 10px;
 }
 
+.header__option__container> .MuiSvgIcon-root {
+    pointer-events: none;
+}
+
 .header__option--active>.header__option__container:hover {
     background-color: unset !important;
     color: unset !important;
@@ -100,6 +106,8 @@
     margin-right: 10px;
     padding: 2px;
     cursor: pointer;
+    text-decoration: none !important;
+    color: black !important;
 }
 
 .header__info:hover {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './Header.css'
 //Material Ui
 import SearchIcon from '@material-ui/icons/Search';
@@ -14,16 +14,27 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
 import {Avatar} from '@material-ui/core'
 import {useStateValue} from '../../StateProvider'
+import {Link, useLocation} from 'react-router-dom'
+import headerOptionsToggler from '../../utils/headerOptionsToggler'
 
 function Header() {
     // eslint-disable-next-line
     const [{user},dispatch] = useStateValue()
+
+    let location = useLocation()
+
+    useEffect(() => {
+       headerOptionsToggler(location)
+    }, [location])
+
     return (
         <div className="header">
             <div className="header__left">
-                <img className='header__logo' alt="" 
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1024px-Facebook_Logo_%282019%29.png"
-                ></img> 
+                <Link to="/">
+                    <img className='header__logo' alt="" 
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1024px-Facebook_Logo_%282019%29.png"
+                    ></img> 
+                </Link>
                 <div className='header__input' >
                     <SearchIcon/>
                     <input placeholder="Search Facebook"></input>
@@ -34,42 +45,41 @@ function Header() {
             </div>
             <div className="header__center">
                 <div className='header__options'>
-                    <div className="header__option header__option--active">
-                    <div className="header__option__container">
-                        <HomeIcon fontSize="large"/>
-                    </div> 
+                    <Link to='/' className="header__option" >
+                        <div className="header__option__container" >
+                            <HomeIcon fontSize="large"/>
+                        </div> 
+                    </Link>
+                    <Link to='/friends' className='header__option' >
+                        <div className="header__option__container">
+                            <PeopleOutlineIcon fontSize="large"/>
+                        </div>
+                    </Link>
+                    <Link to='/watch' className="header__option" >
+                        <div className="header__option__container">
+                            <LiveTvIcon fontSize="large"/>
+                        </div>
+                    </Link>
+                    <Link to='/groups' className="header__option" >
+                        <div className="header__option__container">
+                            <SupervisedUserCircleIcon fontSize="large"/>
+                        </div>
+                    </Link>
+                    <Link to='/games' className="header__option" >
+                        <div className="header__option__container">
+                            <SportsEsportsIcon fontSize="large"/>
+                        </div>
+                    </Link>
                 </div>
-                <div className="header__option">
-                    <div className="header__option__container">
-                        <PeopleOutlineIcon fontSize="large"/>
-                    </div>
-                </div>
-                <div className="header__option">
-                    <div className="header__option__container">
-                        <LiveTvIcon fontSize="large"/>
-                    </div>
-                </div>
-                <div className="header__option">
-                    <div className="header__option__container">
-                        <SupervisedUserCircleIcon fontSize="large"/>
-                    </div>
-                </div>
-                <div className="header__option">
-                    <div className="header__option__container">
-                        <SportsEsportsIcon fontSize="large"/>
-                    </div>
-                </div>
-                </div>
-                
                 <div className="header__burger">
                     <MenuIcon/>
                 </div>
             </div>
             <div className="header__right">
-                <div className="header__info">
+                <Link to='/profile' className='header__info'>
                     <Avatar className='header__avatar' src={user.picture.data.url}/>
                     <h4>{user.first_name}</h4>
-                </div>
+                </Link>
                 <div className="header__buttons">
                     <button className='header__button'>
                         <AddIcon />
@@ -90,3 +100,5 @@ function Header() {
 }
 
 export default Header
+
+
