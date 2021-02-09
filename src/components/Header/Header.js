@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import './Header.css'
 //Material Ui
 import SearchIcon from '@material-ui/icons/Search';
@@ -13,13 +13,16 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
 import {Avatar} from '@material-ui/core'
+//
 import {useStateValue} from '../../StateProvider'
 import {Link, useLocation} from 'react-router-dom'
 import headerOptionsToggler from '../../utils/headerOptionsToggler'
+import Modal from '../Modal/Modal'
 
 function Header() {
     // eslint-disable-next-line
     const [{user},dispatch] = useStateValue()
+    const [modalState,setModalState] = useState(false)
 
     let location = useLocation()
 
@@ -81,7 +84,7 @@ function Header() {
                     <h4>{user.first_name}</h4>
                 </Link>
                 <div className="header__buttons">
-                    <button className='header__button'>
+                    <button className='header__button' onClick={()=>setModalState(true)}>
                         <AddIcon />
                     </button>
                     <button className='header__button'>
@@ -95,6 +98,7 @@ function Header() {
                     </button>
                 </div>
             </div>
+            <Modal showModal={modalState} setModalState={setModalState}/>
         </div>
     )
 }

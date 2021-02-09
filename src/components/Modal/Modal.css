@@ -1,0 +1,179 @@
+.modal{
+    position: fixed;
+    width: 100vw;
+    background-color: #f3f3f47e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 225px 0;
+}
+
+.modal__content{
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 15px 0px 15px;
+    position: relative;
+    flex: 0 1 500px;
+}
+
+.modal__header {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.modal__btn-close {
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    width: 35px;
+    height: 35px;
+    border-radius: 999px;
+    outline: none;
+    background-color: #e4e6ebc4;
+}
+
+.modal__btn-close:hover {
+    background-color: #e4e6eb;
+}
+
+.modal__content>hr {
+    height: 1px;
+    background-color: rgba(128, 128, 128, 0.61);
+    width: 100%;
+    margin-top: 20px;
+}
+
+.modal__post-creator {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 15px;
+    flex: 1;
+}
+
+.modal__info{
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 20px 25px;
+    grid-template-areas:
+    "header info"
+    "header button";
+}
+
+.modal__avatar{
+    grid-area: header;
+    justify-self: center;
+    align-self: center;
+}
+
+.modal__info>p{
+    grid-area: info;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.modal__info>button{
+    grid-area: button;
+    display: flex;
+    width: 20%;
+    border-radius: 5px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+.modal__post-creator>textarea {
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    resize: none;
+    min-height: 150px;
+}
+
+.modal__addition{
+    display:  flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(128, 128, 128, 0.342);
+    border-radius: 10px;
+    height: 60px;
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+.modal__addition>h3 {
+    font-weight: 500;
+}
+
+.modal__options{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    column-gap: 5px;
+}
+
+.modal__option{
+    border-radius: 999px;
+    padding: 5px;
+    background-color: transparent;
+}
+
+.modal__option:hover {
+    background-color: rgba(128, 128, 128, 0.109);
+}
+
+.modal__option>.MuiSvgIcon-root {
+    font-size: x-large;
+}
+
+.modal__options>.modal__option--green {
+    color: green;
+}
+
+.modal__options>.modal__option--blue {
+    color: #2E81F4;
+}
+
+.modal__options>.modal__option--yellow {
+    color: #F7B928;
+}
+
+.modal__options>.modal__option--orange {
+    color: orange;
+}
+
+.modal__options>.modal__option--coldGreen {
+    color: #2ABBA7;
+}
+
+.modal__send{
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
+
+.modal__send-btn{
+    height: 40px;
+    border-radius: 5px;
+    width: 100%;
+    font-weight: 800;
+    background-color: RGB(228, 230, 235);
+    outline: none;
+}
+
+.modal__send-btn:disabled {
+    cursor: not-allowed;
+}
+
+.modal__send-btn:enabled{
+    background-color: #2e81f4;
+    color: white;
+}
+
+.modal__send-btn:enabled:active {
+    transform: scale(0.97);
+}
