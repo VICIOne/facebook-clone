@@ -1,25 +1,34 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import './Settings.css'
 //Material UI
-import {Avatar} from '@material-ui/core'
 import {useStateValue} from '../../StateProvider'
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+//
+import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
+import useOnKeyDown from '../../utils/useOnKeyDown'
+import useOnClick from '../../utils/useOnClick'
+import {Link} from 'react-router-dom'
 
-function Settings() {
+function Settings({setSettignsState}) {
     // eslint-disable-next-line
     const [{user},dispatch] = useStateValue()
+    const settings = useRef()
+
+    useOnKeyDown('Escape', settings, ()=>setSettignsState(false))
+    useOnClick(settings, ()=>setSettignsState(false))
+
     return (
-        <div className='settings'>
-            <div className="settigns__option settigns__option__profile">
-                <Avatar className='settings__avatar' src={user.picture.data.url}/>
+        <div ref={settings} className='settings'>
+            <Link to="/profile" className="settigns__option settigns__option__profile">
+                <CustomAvatar height={65} width={65} src={user.picture.data.url}/>
                 <div className='settings__info'>
                     <h3>{user.name}</h3>
                     <p>See your profile</p>
                 </div>
-            </div>
+            </Link>
             <hr></hr>
             <div className="settigns__option settigns__feedback">
                 <button className="settings__buttonIcon">

@@ -1,11 +1,11 @@
 import React from 'react'
 import './SidebarRow.css'
-import {Avatar} from '@material-ui/core'
+import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 
 function SidebarRow({title, optionImage, profilePhoto, Icon}) {
     return (
         <div className='sidebarRow'>
-            {profilePhoto&&<Avatar className='sidebarRow__avatar' src={profilePhoto}/>}
+            {profilePhoto&&<CustomAvatar src={profilePhoto} height={30} width={30}/>}
             {Icon&&<Icon/>}
             {optionImage&&<img src={optionImage} alt=''></img>}
             <span>{title}</span>

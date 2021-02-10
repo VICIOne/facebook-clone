@@ -4,16 +4,11 @@
     cursor: pointer;
     padding: 10px;
     height: 30px;
-}
-
-.sidebarRow:hover {
-    background-color: rgba(128, 128, 128, 0.171);
     border-radius: 10px;
 }
 
-.sidebarRow__avatar {
-    height: 30px !important;
-    width: 30px !important;
+.sidebarRow:hover{
+    background-color: rgba(128, 128, 128, 0.100);
 }
 
 .sidebarRow>.MuiSvgIcon-root {

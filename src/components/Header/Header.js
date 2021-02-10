@@ -12,13 +12,13 @@ import TelegramIcon from '@material-ui/icons/Telegram';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
-import {Avatar} from '@material-ui/core'
 //
 import {useStateValue} from '../../StateProvider'
 import {Link, useLocation} from 'react-router-dom'
 import headerOptionsToggler from '../../utils/headerOptionsToggler'
 import Modal from '../Modal/Modal'
 import Settings from '../Settings/Settings'
+import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 
 function Header() {
     // eslint-disable-next-line
@@ -83,7 +83,7 @@ function Header() {
             </div>
             <div className="header__right">
                 <Link to='/profile' className='header__info'>
-                    <Avatar className='header__avatar' src={user.picture.data.url}/>
+                    <CustomAvatar height={30} width={30} src={user.picture.data.url}/>
                     <h4>{user.first_name}</h4>
                 </Link>
                 <div className="header__buttons">
@@ -97,9 +97,9 @@ function Header() {
                         <NotificationsIcon/>
                     </button>
                     <button className='header__button' onClick={()=>setSettignsState(prev=>!prev)}>
-                        <ArrowDropDownIcon/>
+                        <ArrowDropDownIcon fontSize='large'/>
                     </button>
-                    {settingsState?<Settings/>:null}
+                    {settingsState?<Settings setSettignsState={setSettignsState}/>:null}
                 </div>
             </div>
             {modalState?<Modal value={modalValue} setModalValue={setModalValue} setModalState={setModalState}/>:null}

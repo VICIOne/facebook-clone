@@ -1,6 +1,5 @@
 .settings{
     width: 360px;
-    /* height: 420px; */
     border-radius: 10px;
     background-color: white;
     box-shadow: 0px 2px 8px -1px rgba(20, 16, 41, 0.24),
@@ -36,11 +35,8 @@
 .settigns__option__profile{
     height: 80px;
     font-size: 18px;
-}
-
-.settings__avatar{
-    height: 65px !important;
-    width: 65px !important;
+    text-decoration: none;
+    color: black;
 }
 
 .settings__info{
@@ -48,7 +44,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* justify-content: space-between; */
     flex: 1;
     height: 100%;
     line-height: 1.25em;
