@@ -23,6 +23,7 @@ function Header() {
     // eslint-disable-next-line
     const [{user},dispatch] = useStateValue()
     const [modalState,setModalState] = useState(false)
+    const [modalValue, setModalValue] = useState('')
 
     let location = useLocation()
 
@@ -98,7 +99,7 @@ function Header() {
                     </button>
                 </div>
             </div>
-            <Modal showModal={modalState} setModalState={setModalState}/>
+            {modalState?<Modal value={modalValue} setModalValue={setModalValue} setModalState={setModalState}/>:null}
         </div>
     )
 }

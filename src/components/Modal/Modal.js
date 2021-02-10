@@ -14,12 +14,12 @@ import {Avatar} from '@material-ui/core'
 //
 import {useStateValue} from '../../StateProvider'
 import {Link} from 'react-router-dom'
+import useOnKeyDown from '../../utils/useOnKeyDown'
 
-function Modal({showModal, setModalState}) {
+function Modal({value, setModalValue, setModalState}) {
     // eslint-disable-next-line
     const [{user},dispatch] = useStateValue()
     const [rows,setRows] = useState(false)
-    const [textArea, setTextArea] = useState('')
 
     const ref = useRef()
     const area = useRef()
@@ -33,35 +33,36 @@ function Modal({showModal, setModalState}) {
         let value = e.target.value.length
         let sumOfRows = Math.ceil(value/lettersLitim)
         setRows(sumOfRows>18?18:sumOfRows)
-        setTextArea(e.target.value)
+        setModalValue(e.target.value)
     }
 
     const sendPost = () =>{
         let post = {
             userName: user.name,
             userPhoto: user.picture.data.url,
-            message: textArea,
+            message: value,
             timeStamp: new Date().getDate(), //will be replaced by firebase server timestamp
         }
         console.log(post) //testing collected data
         setModalState(false)
+        setModalValue('')
     }
 
+    useOnKeyDown('Escape', ref, closeModal)
+
     useEffect(() => {
-        let style = []
-        showModal?style.push('hidden'): style.push('')
-        document.body.style.overflow = style.join('')
-        if(showModal){
+            document.body.style.overflow = 'hidden'
+            //focus at the end of textarea
             area.current.value = ''
-            area.current.value = textArea
+            area.current.value = value
             area.current.focus()
+        return () => {
+            document.body.style.overflow = 'auto'
         }
         // eslint-disable-next-line
-    }, [showModal])
+    }, [])
 
     return (
-        <>
-        {showModal?
         <div className='modal' onMouseDown={(e)=>!(ref.current===e.target || ref.current.contains(e.target))&&closeModal()}>
             <div ref={ref} className='modal__content'>
                 <div className='modal__header'>
@@ -83,7 +84,7 @@ function Modal({showModal, setModalState}) {
                             <ArrowDropDownIcon/>
                         </button>
                     </div>
-                    <textarea ref={area} value={textArea} style={{overflow:`${rows===18?'auto':'hidden'}`,fontSize:`${rows>1?'16px':'26px'}`}} onChange={change} rows={rows>4?rows:4} placeholder={`Whats on your mind, ${user.first_name}?`}></textarea>
+                    <textarea ref={area} value={value} style={{overflow:`${rows===18?'auto':'hidden'}`,fontSize:`${rows>1?'16px':'26px'}`}} onChange={change} rows={rows>4?rows:4} placeholder={`Whats on your mind, ${user.first_name}?`}></textarea>
                     <div className="modal__addition">
                         <h3>Add to your post</h3>
                         <div className='modal__options'>
@@ -108,15 +109,11 @@ function Modal({showModal, setModalState}) {
                         </div>
                     </div>
                     <div className='modal__send'>
-                        <button onClick={sendPost} disabled={!textArea} className="modal__send-btn"><span>Post</span></button>
+                        <button onClick={sendPost} disabled={!value} className="modal__send-btn"><span>Post</span></button>
                     </div>
                 </div>
             </div>
         </div>
-        :
-        null
-        }
-        </>
     )
 }
 
