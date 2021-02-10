@@ -127,11 +127,12 @@
 .header__buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    column-gap: 4px;
+    column-gap: 8px;
+    position: relative;
 }
 
 .header__button {
-    padding: 9px;
+    padding: 8px;
     border-radius: 999px;
     outline: none;
     background-color: #e4e6ebc4;

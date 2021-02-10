@@ -18,12 +18,14 @@ import {useStateValue} from '../../StateProvider'
 import {Link, useLocation} from 'react-router-dom'
 import headerOptionsToggler from '../../utils/headerOptionsToggler'
 import Modal from '../Modal/Modal'
+import Settings from '../Settings/Settings'
 
 function Header() {
     // eslint-disable-next-line
     const [{user},dispatch] = useStateValue()
     const [modalState,setModalState] = useState(false)
     const [modalValue, setModalValue] = useState('')
+    const [settingsState, setSettignsState] = useState(false)
 
     let location = useLocation()
 
@@ -94,12 +96,14 @@ function Header() {
                     <button className='header__button'>
                         <NotificationsIcon/>
                     </button>
-                    <button className='header__button'>
+                    <button className='header__button' onClick={()=>setSettignsState(prev=>!prev)}>
                         <ArrowDropDownIcon/>
                     </button>
+                    {settingsState?<Settings/>:null}
                 </div>
             </div>
             {modalState?<Modal value={modalValue} setModalValue={setModalValue} setModalState={setModalState}/>:null}
+            
         </div>
     )
 }
