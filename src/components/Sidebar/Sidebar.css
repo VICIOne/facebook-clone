@@ -6,6 +6,9 @@
     overflow-y: auto;
     height: calc(100vh - 90px);
     min-width: 265px;
+    position: sticky;
+    top: 54px;
+    max-height: 346px;
 }
 
 .sidebar>a{
@@ -19,6 +22,20 @@
     width: 90%;
     background-color: rgba(128, 128, 128, 0.486);
     height: 1px;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 15px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #E5E6E9;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #C1C1C1;
+    border-radius: 10px;
+    border: 3px solid #E5E6E9;
 }
 
 @media (max-width:1100px) {

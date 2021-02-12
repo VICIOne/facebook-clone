@@ -65,7 +65,8 @@
 
 .header__option--active {
     border-bottom: 3px solid #2e81f4;
-    color: #2e81f4
+    color: #2e81f4;
+    padding-bottom: 0px;
 }
 
 .header__option__container {
@@ -99,25 +100,33 @@
     display: flex;
     padding: 6px 0px;
     flex: 0.24;
+    justify-content: space-evenly;
 }
 
 .header__info {
     display: flex;
     align-items: center;
-    margin-right: 10px;
     padding: 2px;
     cursor: pointer;
-    text-decoration: none !important;
-    color: black !important;
+    text-decoration: none;
+    border-radius: 20px;
+    color: black;
+}
+
+.header__info--active{
+    background-color: RGB(231, 243, 255) !important;
+    color: RGB(36, 125, 243);
 }
 
 .header__info:hover {
     background: #e4e6eb;
-    border-radius: 20px;
+
 }
 
 .header__info>h4 {
-    margin: 0 10px;
+    margin: 0 7px;
+    font-weight: 500;
+    font-size: 16px;
 }
 
 .header__buttons {

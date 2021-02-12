@@ -1,7 +1,10 @@
 .modal{
     position: fixed;
-    width: 100vw;
-    background-color: #f3f3f47e;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #0202e97e;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,36 +58,37 @@
 }
 
 .modal__info{
-    display: grid;
-    grid-template-columns: 50px 1fr;
-    grid-template-rows: 20px 25px;
-    grid-template-areas:
-    "header info"
-    "header button";
+    display: flex;
+    height: 50px;
+}
+
+.modal__user{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .modal__avatar{
-    grid-area: header;
     justify-self: center;
     align-self: center;
 }
 
-.modal__info>p{
-    grid-area: info;
+.modal__user>p {
     font-size: 16px;
     font-weight: 500;
     margin-left: 5px;
 }
 
-.modal__info>button{
-    grid-area: button;
+.modal__user>button {
     display: flex;
-    width: 20%;
+    width: 85px;
+    height: 20px;
     border-radius: 5px;
     justify-content: space-between;
     align-items: center;
     padding: 5px;
     margin-left: 5px;
+    background-color: RGB(228, 230, 235);
 }
 
 .modal__post-creator>textarea {

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import './Header.css'
 //Material Ui
 import SearchIcon from '@material-ui/icons/Search';
@@ -26,11 +26,13 @@ function Header() {
     const [modalState,setModalState] = useState(false)
     const [modalValue, setModalValue] = useState('')
     const [settingsState, setSettignsState] = useState(false)
+    const profile = useRef()
 
     let location = useLocation()
 
     useEffect(() => {
        headerOptionsToggler(location)
+       location.pathname === '/profile'?profile.current.classList.add('header__info--active'):profile.current.classList.remove('header__info--active')
     }, [location])
 
     return (
@@ -82,7 +84,7 @@ function Header() {
                 </div>
             </div>
             <div className="header__right">
-                <Link to='/profile' className='header__info'>
+                <Link ref={profile} to='/profile' className='header__info'>
                     <CustomAvatar height={30} width={30} src={user.picture.data.url}/>
                     <h4>{user.first_name}</h4>
                 </Link>

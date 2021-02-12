@@ -22,7 +22,7 @@ function Settings({setSettignsState}) {
 
     return (
         <div ref={settings} className='settings'>
-            <Link to="/profile" className="settigns__option settigns__option__profile">
+            <Link to="/profile" className="settigns__option settigns__option__profile" onClick={()=>setSettignsState(false)}>
                 <CustomAvatar height={65} width={65} src={user.picture.data.url}/>
                 <div className='settings__info'>
                     <h3>{user.name}</h3>

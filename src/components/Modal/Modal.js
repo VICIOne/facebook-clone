@@ -77,12 +77,14 @@ function Modal({value, setModalValue, setModalState}) {
                         <Link to='/profile' className='modal__avatar'>
                             <Avatar src={user.picture.data.url}/>
                         </Link>
-                        <p>{user.name}</p>
-                        <button>
-                            <PublicIcon/>
-                            <p>Public</p>
-                            <ArrowDropDownIcon/>
-                        </button>
+                        <div className='modal__user'>
+                            <p>{user.name}</p>
+                            <button>
+                                <PublicIcon/>
+                                <p>Public</p>
+                                <ArrowDropDownIcon/>
+                            </button>
+                        </div>
                     </div>
                     <textarea ref={area} value={value} style={{overflow:`${rows===18?'auto':'hidden'}`,fontSize:`${rows>1?'16px':'26px'}`}} onChange={change} rows={rows>4?rows:4} placeholder={`Whats on your mind, ${user.first_name}?`}></textarea>
                     <div className="modal__addition">

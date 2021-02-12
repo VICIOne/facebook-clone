@@ -10,6 +10,9 @@
     right: 0px;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    height: calc(100vh - 90px);
+    max-height: 290px;
 }
 
 .settings>hr{

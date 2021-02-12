@@ -17,6 +17,41 @@ function Feed() {
                 userName={'userName'}
                 timestamp={'timestamp'}
                 />
+                <Post
+                profileImage={'profileImage'}
+                message={'message'}
+                image={'image'}
+                userName={'userName'}
+                timestamp={'timestamp'}
+                />
+                <Post
+                profileImage={'profileImage'}
+                message={'message'}
+                image={'image'}
+                userName={'userName'}
+                timestamp={'timestamp'}
+                />
+                <Post
+                profileImage={'profileImage'}
+                message={'message'}
+                image={'image'}
+                userName={'userName'}
+                timestamp={'timestamp'}
+                />
+                <Post
+                profileImage={'profileImage'}
+                message={'message'}
+                image={'image'}
+                userName={'userName'}
+                timestamp={'timestamp'}
+                />
+                <Post
+                profileImage={'profileImage'}
+                message={'message'}
+                image={'image'}
+                userName={'userName'}
+                timestamp={'timestamp'}
+                />
             </div>
         </div>
     )
