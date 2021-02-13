@@ -12,17 +12,18 @@ import useOnKeyDown from '../../utils/useOnKeyDown'
 import useOnClick from '../../utils/useOnClick'
 import {Link} from 'react-router-dom'
 
-function Settings({setSettignsState}) {
+function Settings({setSettingsState, trigger}) {
     // eslint-disable-next-line
     const [{user},dispatch] = useStateValue()
+
     const settings = useRef()
 
-    useOnKeyDown('Escape', settings, ()=>setSettignsState(false))
-    useOnClick(settings, ()=>setSettignsState(false))
+    useOnKeyDown('Escape', settings, ()=>setSettingsState(false))
+    useOnClick(settings, ()=>setSettingsState(false), trigger.current)
 
     return (
         <div ref={settings} className='settings'>
-            <Link to="/profile" className="settigns__option settigns__option__profile" onClick={()=>setSettignsState(false)}>
+            <Link to="/profile" className="settigns__option settigns__option--profile" onClick={()=>setSettingsState(false)}>
                 <CustomAvatar height={65} width={65} src={user.picture.data.url}/>
                 <div className='settings__info'>
                     <h3>{user.name}</h3>
@@ -30,8 +31,8 @@ function Settings({setSettignsState}) {
                 </div>
             </Link>
             <hr></hr>
-            <div className="settigns__option settigns__feedback">
-                <button className="settings__buttonIcon">
+            <div className="settigns__option">
+                <button className="settings__icon">
                     <LiveHelpIcon/>
                 </button>
                 <div className='settings__info'>
@@ -40,8 +41,8 @@ function Settings({setSettignsState}) {
                 </div>
             </div>
             <hr></hr>
-            <div className="settigns__option settigns__themes">
-                <button className="settings__buttonIcon">
+            <div className="settigns__option">
+                <button className="settings__icon">
                     <Brightness2Icon/>
                 </button>
                  <div className='settings__info'>
@@ -49,8 +50,8 @@ function Settings({setSettignsState}) {
                 </div>
                 <ChevronRightIcon fontSize='large'/>
             </div>
-            <div className="settigns__option settigns__logout">
-                <button className="settings__buttonIcon">
+            <div className="settigns__option">
+                <button className="settings__icon">
                     <ExitToAppIcon/>
                 </button> 
                 <div className='settings__info'>

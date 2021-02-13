@@ -35,7 +35,7 @@
     background-color: rgba(128, 128, 128, 0.100);
 }
 
-.settigns__option__profile{
+.settigns__option--profile{
     height: 80px;
     font-size: 18px;
     text-decoration: none;
@@ -62,7 +62,7 @@
     font-size: 0.9em;
 }
 
-.settings__buttonIcon{
+.settings__icon {
     height: 40px;
     width: 40px;
     border-radius: 999px;

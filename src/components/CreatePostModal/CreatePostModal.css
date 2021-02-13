@@ -4,11 +4,10 @@
     top: 0;
     left: 0;
     bottom: 0;
-    background-color: #0202e97e;
+    background-color: #f1f1f6a2;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 225px 0;
 }
 
 .modal__content{
@@ -62,24 +61,24 @@
     height: 50px;
 }
 
-.modal__user{
+.modal__avatar {
+    justify-self: center;
+    align-self: center;
+}
+
+.modal__preferences{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
-.modal__avatar{
-    justify-self: center;
-    align-self: center;
-}
-
-.modal__user>p {
+.modal__preferences>p {
     font-size: 16px;
     font-weight: 500;
     margin-left: 5px;
 }
 
-.modal__user>button {
+.modal__preferences>button {
     display: flex;
     width: 85px;
     height: 20px;

@@ -145,6 +145,15 @@
     background-color: #e4e6ebc4;
 }
 
+.header__button>.MuiSvgIcon-root {
+    pointer-events: none;
+}
+
+.header__button--active {
+    background-color: RGB(231, 243, 255) !important;
+    color: RGB(36, 125, 243);
+}
+
 .header__button:hover {
     background-color: #e4e6eb;
 }

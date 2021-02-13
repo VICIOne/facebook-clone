@@ -1,9 +1,10 @@
 import {useEffect} from "react";
 
-export default function useOnClick(ref, handler) {
+export default function useOnClick(ref, handler, trigger) {
     useEffect(() => {
+        
         const listener = event => {
-            if (!ref.current || ref.current.contains(event.target)) {
+            if (!ref.current || ref.current.contains(event.target) || trigger === event.target) {
                 return;
             }
 

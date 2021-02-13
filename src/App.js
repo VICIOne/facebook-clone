@@ -1,3 +1,4 @@
+import React from 'react'
 import './App.css';
 import Header from './components/Header/Header'
 import Sidebar from './components/Sidebar/Sidebar'
@@ -13,7 +14,7 @@ import {BrowserRouter as Router,
 function App() {
   // eslint-disable-next-line
   const [{user},dispatch] = useStateValue()
- 
+  
   return (
     <div className="app">
       {!user?

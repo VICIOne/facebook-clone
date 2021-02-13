@@ -16,7 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import {useStateValue} from '../../StateProvider'
 import {Link, useLocation} from 'react-router-dom'
 import headerOptionsToggler from '../../utils/headerOptionsToggler'
-import Modal from '../Modal/Modal'
+import CreatePostModal from '../CreatePostModal/CreatePostModal'
 import Settings from '../Settings/Settings'
 import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 
@@ -25,8 +25,10 @@ function Header() {
     const [{user},dispatch] = useStateValue()
     const [modalState,setModalState] = useState(false)
     const [modalValue, setModalValue] = useState('')
-    const [settingsState, setSettignsState] = useState(false)
+    const [settingsState, setSettingsState] = useState(false)
+
     const profile = useRef()
+    const settingsBtn = useRef()
 
     let location = useLocation()
 
@@ -98,13 +100,13 @@ function Header() {
                     <button className='header__button'>
                         <NotificationsIcon/>
                     </button>
-                    <button className='header__button' onClick={()=>setSettignsState(prev=>!prev)}>
+                    <button ref={settingsBtn} className={settingsState?'header__button header__button--active':'header__button'} onClick={()=>setSettingsState(prev=>!prev)}>
                         <ArrowDropDownIcon fontSize='large'/>
                     </button>
-                    {settingsState?<Settings setSettignsState={setSettignsState}/>:null}
+                    {settingsState?<Settings trigger={settingsBtn} setSettingsState={setSettingsState}/>:null}
                 </div>
             </div>
-            {modalState?<Modal value={modalValue} setModalValue={setModalValue} setModalState={setModalState}/>:null}
+            {modalState?<CreatePostModal textAreaValue={modalValue} setModalValue={setModalValue} setModalState={setModalState}/>:null}
             
         </div>
     )

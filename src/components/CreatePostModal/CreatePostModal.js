@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react'
-import './Modal.css'
+import './CreatePostModal.css'
 //Material UI
 import CloseIcon from '@material-ui/icons/Close';
 import PublicIcon from '@material-ui/icons/Public';
@@ -15,32 +15,33 @@ import {Avatar} from '@material-ui/core'
 import {useStateValue} from '../../StateProvider'
 import {Link} from 'react-router-dom'
 import useOnKeyDown from '../../utils/useOnKeyDown'
+import useOnClick from '../../utils/useOnClick'
 
-function Modal({value, setModalValue, setModalState}) {
+function CreatePostModal({textAreaValue, setModalValue, setModalState}) {
     // eslint-disable-next-line
     const [{user},dispatch] = useStateValue()
     const [rows,setRows] = useState(false)
 
-    const ref = useRef()
-    const area = useRef()
+    const modalContent = useRef()
+    const textArea = useRef()
 
     const closeModal = () =>{
-        setModalState(false)
         setRows(false) 
+        setModalState(false)
     }
 
-    const change = (e, lettersLitim=56) =>{
-        let value = e.target.value.length
-        let sumOfRows = Math.ceil(value/lettersLitim)
+    const change = (e, lettersLimit=56) =>{
+        let value = e.target.value
+        let sumOfRows = Math.ceil(value.length/lettersLimit)
         setRows(sumOfRows>18?18:sumOfRows)
-        setModalValue(e.target.value)
+        setModalValue(value)
     }
 
     const sendPost = () =>{
         let post = {
             userName: user.name,
             userPhoto: user.picture.data.url,
-            message: value,
+            message: textAreaValue,
             timeStamp: new Date().getDate(), //will be replaced by firebase server timestamp
         }
         console.log(post) //testing collected data
@@ -48,14 +49,15 @@ function Modal({value, setModalValue, setModalState}) {
         setModalValue('')
     }
 
-    useOnKeyDown('Escape', ref, closeModal)
+    useOnKeyDown('Escape', modalContent, closeModal)
+    useOnClick(modalContent, ()=>closeModal())
 
     useEffect(() => {
             document.body.style.overflow = 'hidden'
             //focus at the end of textarea
-            area.current.value = ''
-            area.current.value = value
-            area.current.focus()
+            textArea.current.value = ''
+            textArea.current.value = textAreaValue
+            textArea.current.focus()
         return () => {
             document.body.style.overflow = 'auto'
         }
@@ -63,8 +65,8 @@ function Modal({value, setModalValue, setModalState}) {
     }, [])
 
     return (
-        <div className='modal' onMouseDown={(e)=>!(ref.current===e.target || ref.current.contains(e.target))&&closeModal()}>
-            <div ref={ref} className='modal__content'>
+        <div className='modal'>
+            <div ref={modalContent} className='modal__content'>
                 <div className='modal__header'>
                     <p>Create post</p>
                     <button className='modal__btn-close' onClick={closeModal}>
@@ -77,7 +79,7 @@ function Modal({value, setModalValue, setModalState}) {
                         <Link to='/profile' className='modal__avatar'>
                             <Avatar src={user.picture.data.url}/>
                         </Link>
-                        <div className='modal__user'>
+                        <div className='modal__preferences'>
                             <p>{user.name}</p>
                             <button>
                                 <PublicIcon/>
@@ -86,7 +88,7 @@ function Modal({value, setModalValue, setModalState}) {
                             </button>
                         </div>
                     </div>
-                    <textarea ref={area} value={value} style={{overflow:`${rows===18?'auto':'hidden'}`,fontSize:`${rows>1?'16px':'26px'}`}} onChange={change} rows={rows>4?rows:4} placeholder={`Whats on your mind, ${user.first_name}?`}></textarea>
+                    <textarea ref={textArea} value={textAreaValue} style={{overflow:`${rows===18?'auto':'hidden'}`,fontSize:`${rows>1?'16px':'26px'}`}} onChange={change} rows={rows>4?rows:4} placeholder={`Whats on your mind, ${user.first_name}?`}></textarea>
                     <div className="modal__addition">
                         <h3>Add to your post</h3>
                         <div className='modal__options'>
@@ -111,7 +113,7 @@ function Modal({value, setModalValue, setModalState}) {
                         </div>
                     </div>
                     <div className='modal__send'>
-                        <button onClick={sendPost} disabled={!value} className="modal__send-btn"><span>Post</span></button>
+                        <button onClick={sendPost} disabled={!textAreaValue} className="modal__send-btn"><span>Post</span></button>
                     </div>
                 </div>
             </div>
@@ -119,4 +121,4 @@ function Modal({value, setModalValue, setModalState}) {
     )
 }
 
-export default Modal
+export default CreatePostModal

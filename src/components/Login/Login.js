@@ -11,7 +11,6 @@ function Login() {
     const signIn = () =>{
         auth.signInWithPopup(provider)
         .then(res=>{
-            console.log(res)
             dispatch({
                 type: actionTypes.SET_USER,
                 user: res.additionalUserInfo.profile //payload
