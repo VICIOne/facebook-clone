@@ -1,0 +1,18 @@
+.add {
+    display: flex;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    text-decoration: none;
+    
+}
+
+.add:hover {
+    background-color: rgba(128, 128, 128, 0.100);
+}
+
+.add>h3{
+    margin-left: 10px;
+    align-self: center;
+}

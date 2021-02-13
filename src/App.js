@@ -3,8 +3,9 @@ import './App.css';
 import Header from './components/Header/Header'
 import Sidebar from './components/Sidebar/Sidebar'
 import Feed from './components/Feed/Feed'
-import Contacts from './components/Contacts/Contacts'
+import Advertisement from './components/Advertisement/Advertisement'
 import Login from './components/Login/Login'
+import FutureSection from './components/UI/FutureSection/FutureSection'
 import {useStateValue} from './StateProvider'
 import {BrowserRouter as Router,
         Switch,
@@ -23,31 +24,31 @@ function App() {
           <Router>
               <Header/>
               <div className="app__body">
-                <Sidebar/>
                 <Switch>
                   <Route path="/" exact>
+                      <Sidebar/>
                       <Feed/>
                   </Route>
                   <Route path="/profile" exact>
-                      <div>Profile</div>
+                      <FutureSection title={'Profile'}/>
                   </Route>
                   <Route path="/friends">
-                      <div>Friends</div>
+                      <FutureSection title={'Friends'}/>
                   </Route>
                   <Route path="/watch">
-                      <div>Watch</div>
+                      <FutureSection title={'Watch'}/>
                   </Route>
                   <Route path="/groups">
-                      <div>Groups</div>
+                      <FutureSection title={'Groups'}/>
                   </Route>
                   <Route path="/games">
-                      <div>Games</div>
+                      <FutureSection title={'Games'}/>
                   </Route>
                   <Route path="/events">
-                    <div>Events</div>
+                    <FutureSection title={'Events'}/>
                   </Route>
                 </Switch>
-                <Contacts/>
+                <Advertisement/>
               </div> 
           </Router>
           }
