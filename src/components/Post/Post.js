@@ -7,7 +7,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-function Post({profileImage, image, message, timestamp, userName}) {
+function Post({profileImage, image, message, timestamp, userName, deletePost, id}) {
     return (
         <div className="post">
             <div className="post__top">
@@ -17,7 +17,7 @@ function Post({profileImage, image, message, timestamp, userName}) {
                 />
                 <div className="post__info">
                     <h3>{userName}</h3>
-                    <p>{timestamp}</p>
+                    <p>{new Date(timestamp?.toDate()).toUTCString()}</p>
                 </div>
             </div>
             <div className="post__bottom">
@@ -27,7 +27,7 @@ function Post({profileImage, image, message, timestamp, userName}) {
                 <img src={image} alt=''></img>
             </div>
             <div className='post__options'>
-                <div className="post__option">
+                <div className="post__option" onClick={()=>deletePost(id)}>
                     <ThumbUpIcon/>
                     <p>Like</p>
                 </div>
