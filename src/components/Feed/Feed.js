@@ -18,7 +18,6 @@ function Feed() {
     },[])
 
     const deletePost = (id) =>{
-        console.log(id)
         db.collection('posts').doc(id).delete()
         .then(() => {
             console.log("Document successfully deleted!");

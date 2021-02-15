@@ -1,47 +1,53 @@
 import React from 'react'
 import './Post.css'
-import {Avatar} from '@material-ui/core'
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import CommentIcon from '@material-ui/icons/Comment';
+//Material UI
+// import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+// import CommentIcon from '@material-ui/icons/Comment';
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ShareIcon from '@material-ui/icons/Share';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import RemoveIcon from '@material-ui/icons/Remove';
+//
+import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
+import {Link} from 'react-router-dom'
 
 function Post({profileImage, image, message, timestamp, userName, deletePost, id}) {
     return (
         <div className="post">
             <div className="post__top">
-                <Avatar
-                className='post__avatar'
-                src={profileImage}
-                />
+                <Link to={'/profile'}>
+                    <CustomAvatar
+                    height={35}
+                    width={35}
+                    src={profileImage}
+                    />
+                </Link>
                 <div className="post__info">
-                    <h3>{userName}</h3>
+                    <Link to={'/profile'}>{userName}</Link>
                     <p>{new Date(timestamp?.toDate()).toUTCString()}</p>
                 </div>
+                <button className='post__delete' onClick={()=>setTimeout(()=>deletePost(id),500)}>
+                    <RemoveIcon/>
+                </button>
             </div>
-            <div className="post__bottom">
+            <div className="post__message">
                 <p>{message}</p>
             </div>
             <div className="post__image">
                 <img src={image} alt=''></img>
             </div>
             <div className='post__options'>
-                <div className="post__option" onClick={()=>deletePost(id)}>
-                    <ThumbUpIcon/>
+                <div className="post__option">
+                    <FavoriteBorderIcon/>
                     <p>Like</p>
                 </div>
                 <div className="post__option">
-                    <CommentIcon/>
-                    <p>Like</p>
+                    <ChatBubbleOutlineIcon/>
+                    <p>Comment</p>
                 </div>
                 <div className="post__option">
                     <ShareIcon/>
                     <p>Share</p>
-                </div>
-                <div className="post__option">
-                    <AccountCircleIcon/>
-                    <ExpandMoreIcon/>
                 </div>
             </div>
         </div>

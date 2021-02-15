@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import './MessageSender.css'
-import {Avatar} from '@material-ui/core'
+//Material UI
 import VideocamIcon from '@material-ui/icons/Videocam';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import MoodIcon from '@material-ui/icons/Mood';
+//
+import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 import {useStateValue} from '../../StateProvider'
 import db from '../../localfirebase'
 import firebase from 'firebase'
@@ -16,8 +18,6 @@ function MessageSender() {
 
     const sendPost = (e) =>{
         e.preventDefault()
-
-        console.log(input, url)
 
         db.collection('posts').add({
             message: input,
@@ -34,19 +34,11 @@ function MessageSender() {
     return (
         <div className='messageSender'>
             <div className="messageSender__top">
-                <Avatar src={user.picture.data.url}/>
-                <form>
-                    <input 
-                    className="messageSender__input" 
-                    placeholder={`What's on your mind, ${user.first_name}?`}
-                    onChange={(e)=>setInput(e.target.value)}
-                    value={input}
-                    ></input>
-                    <input 
-                    placeholder={"image URL (Optional)"}
-                    onChange={(e)=>setUrl(e.target.value)}
-                    value={url}
-                    ></input>
+                <CustomAvatar src={user.picture.data.url} height={40} width={40}/>
+                <form className='messageSender__form'>
+                    <div className='messageSender__input'>
+                        {`What's on your mind, ${user.first_name}?`}
+                    </div>
                     <button 
                     type='submit'
                     onClick={sendPost}
@@ -54,8 +46,8 @@ function MessageSender() {
                     Hidden submit
                     </button>
                 </form>
-                
             </div>
+            <hr></hr>
             <div className='messageSender__bottom'>
                 <div className="messageSender__option">
                     <VideocamIcon 
