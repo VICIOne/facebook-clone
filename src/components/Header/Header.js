@@ -22,9 +22,9 @@ import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 
 function Header() {
     // eslint-disable-next-line
-    const [{user},dispatch] = useStateValue()
-    const [modalState,setModalState] = useState(false)
-    const [modalValue, setModalValue] = useState('')
+    const overallContextObj = useStateValue()
+    const [{user},dispatch] = overallContextObj.user
+    const [modalState,setModalState] = overallContextObj.modalState
     const [settingsState, setSettingsState] = useState(false)
 
     const profile = useRef()
@@ -106,7 +106,7 @@ function Header() {
                     {settingsState?<Settings trigger={settingsBtn} setSettingsState={setSettingsState}/>:null}
                 </div>
             </div>
-            {modalState?<CreatePostModal textAreaValue={modalValue} setModalValue={setModalValue} setModalState={setModalState}/>:null}
+            {modalState?<CreatePostModal setModalState={setModalState}/>:null}
             
         </div>
     )

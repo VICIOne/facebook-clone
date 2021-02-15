@@ -9,7 +9,8 @@ import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 
 function Sidebar() {
     // eslint-disable-next-line
-    const [{user},dispatch] = useStateValue()
+    const overallContextObj = useStateValue()
+    const [{user},dispatch] = overallContextObj.user
 
     let location = useLocation()
 

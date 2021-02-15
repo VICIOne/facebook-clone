@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './MessageSender.css'
 //Material UI
 import VideocamIcon from '@material-ui/icons/Videocam';
@@ -7,41 +7,23 @@ import MoodIcon from '@material-ui/icons/Mood';
 //
 import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 import {useStateValue} from '../../StateProvider'
-import db from '../../localfirebase'
-import firebase from 'firebase'
 
 function MessageSender() {
     // eslint-disable-next-line
-    const [{user},dispatch] = useStateValue()
-    const [input, setInput] = useState('')
-    const [url, setUrl] = useState('')
-
-    const sendPost = (e) =>{
-        e.preventDefault()
-
-        db.collection('posts').add({
-            message: input,
-            image: url,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            profileImage: user.picture.data.url,
-            userName: user.name
-        })
-
-        setInput('')
-        setUrl('')
-    }
+    const overallContextObj = useStateValue()
+    const [{user},dispatch] = overallContextObj.user
+    const [modalState, setModalState] = overallContextObj.modalState
 
     return (
         <div className='messageSender'>
             <div className="messageSender__top">
                 <CustomAvatar src={user.picture.data.url} height={40} width={40}/>
                 <form className='messageSender__form'>
-                    <div className='messageSender__input'>
+                    <div className='messageSender__input' onClick={()=>setModalState(true)}>
                         {`What's on your mind, ${user.first_name}?`}
                     </div>
                     <button 
                     type='submit'
-                    onClick={sendPost}
                     >
                     Hidden submit
                     </button>

@@ -14,7 +14,8 @@ import {Link} from 'react-router-dom'
 
 function Settings({setSettingsState, trigger}) {
     // eslint-disable-next-line
-    const [{user},dispatch] = useStateValue()
+    const overallContextObj = useStateValue()
+    const [{user},dispatch] = overallContextObj.user
 
     const settings = useRef()
 

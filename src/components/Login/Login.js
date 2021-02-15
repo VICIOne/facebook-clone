@@ -7,7 +7,8 @@ import {actionTypes} from '../../reducer'
 
 function Login() {
     // eslint-disable-next-line
-    const [{user},dispatch] = useStateValue()
+    const overallContextObj = useStateValue()
+    const [{user},dispatch] = overallContextObj.user
     const signIn = () =>{
         auth.signInWithPopup(provider)
         .then(res=>{

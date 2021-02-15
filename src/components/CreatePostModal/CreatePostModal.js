@@ -16,11 +16,16 @@ import {useStateValue} from '../../StateProvider'
 import {Link} from 'react-router-dom'
 import useOnKeyDown from '../../utils/useOnKeyDown'
 import useOnClick from '../../utils/useOnClick'
+import db from '../../localfirebase'
+import firebase from 'firebase'
 
-function CreatePostModal({textAreaValue, setModalValue, setModalState}) {
+function CreatePostModal({setModalState}) {
     // eslint-disable-next-line
-    const [{user},dispatch] = useStateValue()
+    const overallContextObj = useStateValue()
+    const [{user},dispatch] = overallContextObj.user
+    const [modalValue, setModalValue] = overallContextObj.modalValue
     const [rows,setRows] = useState(false)
+    
 
     const modalContent = useRef()
     const textArea = useRef()
@@ -37,14 +42,17 @@ function CreatePostModal({textAreaValue, setModalValue, setModalState}) {
         setModalValue(value)
     }
 
-    const sendPost = () =>{
-        let post = {
-            userName: user.name,
-            userPhoto: user.picture.data.url,
-            message: textAreaValue,
-            timeStamp: new Date().getDate(), //will be replaced by firebase server timestamp
-        }
-        console.log(post) //testing collected data
+    const sendPost = (e) =>{
+        e.preventDefault()
+
+        db.collection('posts').add({
+            message: modalValue,
+            image: '',
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            profileImage: user.picture.data.url,
+            userName: user.name
+        })
+
         setModalState(false)
         setModalValue('')
     }
@@ -56,7 +64,7 @@ function CreatePostModal({textAreaValue, setModalValue, setModalState}) {
             document.body.style.overflow = 'hidden'
             //focus at the end of textarea
             textArea.current.value = ''
-            textArea.current.value = textAreaValue
+            textArea.current.value = modalValue
             textArea.current.focus()
         return () => {
             document.body.style.overflow = 'auto'
@@ -88,7 +96,7 @@ function CreatePostModal({textAreaValue, setModalValue, setModalState}) {
                             </button>
                         </div>
                     </div>
-                    <textarea ref={textArea} value={textAreaValue} style={{overflow:`${rows===18?'auto':'hidden'}`,fontSize:`${rows>1?'16px':'26px'}`}} onChange={change} rows={rows>4?rows:4} placeholder={`Whats on your mind, ${user.first_name}?`}></textarea>
+                    <textarea ref={textArea} value={modalValue} style={{overflow:`${rows===18?'auto':'hidden'}`,fontSize:`${rows>1?'16px':'26px'}`}} onChange={change} rows={rows>4?rows:4} placeholder={`Whats on your mind, ${user.first_name}?`}></textarea>
                     <div className="modal__addition">
                         <h3>Add to your post</h3>
                         <div className='modal__options'>
@@ -113,7 +121,7 @@ function CreatePostModal({textAreaValue, setModalValue, setModalState}) {
                         </div>
                     </div>
                     <div className='modal__send'>
-                        <button onClick={sendPost} disabled={!textAreaValue} className="modal__send-btn"><span>Post</span></button>
+                        <button onClick={sendPost} disabled={!modalValue} className="modal__send-btn"><span>Post</span></button>
                     </div>
                 </div>
             </div>

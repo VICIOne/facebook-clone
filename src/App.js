@@ -14,7 +14,8 @@ import {BrowserRouter as Router,
 
 function App() {
   // eslint-disable-next-line
-  const [{user},dispatch] = useStateValue()
+  const overallContextObj = useStateValue()
+  const [{user},dispatch] = overallContextObj.user
   
   return (
     <div className="app">
