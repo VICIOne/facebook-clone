@@ -5,7 +5,7 @@ import MessageSender from '../MessageSender/MessageSender'
 import Post from '../Post/Post'
 import db from '../../localfirebase'
 
-function Feed() {
+const Feed = React.memo(function Feed() {
 
     const [posts, setPosts] = useState([])
 
@@ -49,6 +49,6 @@ function Feed() {
             </div>
         </div>
     )
-}
+})
 
 export default Feed

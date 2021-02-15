@@ -10,6 +10,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 //
 import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 import {Link} from 'react-router-dom'
+import setEditedTimestamp from '../../utils/dateFrameWork'
 
 function Post({profileImage, image, message, timestamp, userName, deletePost, id}) {
     return (
@@ -24,7 +25,7 @@ function Post({profileImage, image, message, timestamp, userName, deletePost, id
                 </Link>
                 <div className="post__info">
                     <Link to={'/profile'}>{userName}</Link>
-                    <p>{new Date(timestamp?.toDate()).toUTCString()}</p>
+                    <p>{setEditedTimestamp(timestamp)}</p>
                 </div>
                 <button className='post__delete' onClick={()=>setTimeout(()=>deletePost(id),500)}>
                     <RemoveIcon/>
