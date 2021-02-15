@@ -54,8 +54,6 @@
     column-gap: 10px;
 }
 
-
-
 .header__option {
     display: flex;
     width: 120px;
@@ -101,6 +99,7 @@
     padding: 6px 0px;
     flex: 0.24;
     justify-content: space-evenly;
+    min-width: 295px;
 }
 
 .header__info {
@@ -158,13 +157,16 @@
     background-color: #e4e6eb;
 }
 
-@media (max-width:1300px) {
+@media (max-width:1250px) {
     .header__input {
         display: none;
     }
     .header__left>.header__button {
         display: block;
         margin-left: 20px;
+    }
+    .header__right{
+        min-width: 190px;
     }
     .header__right>.header__info {
         display: none;

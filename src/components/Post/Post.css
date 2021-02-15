@@ -37,11 +37,23 @@
 }
 
 .post__delete{
+    width: 20px;
+    height: 20px;
     position: absolute;
     top: 15px;
     right: 15px;
     background-color: transparent;
     color: grey;
+    outline: none;
+    border-radius: 999px;
+}
+
+.post__delete:hover {
+    color: black;
+}
+
+.post__delete:active {
+    background-color: rgba(128, 128, 128, 0.100);
 }
 
 .post__message {

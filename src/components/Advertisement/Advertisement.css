@@ -6,7 +6,6 @@
     flex-direction: column;
     overflow-y: auto;
     height: calc(100vh - 90px);
-    min-width: 265px;
     position: sticky;
     top: 54px;
     max-height: 346px; 
@@ -34,7 +33,7 @@
 }
 
 
-@media (max-width:1300px) {
+@media (max-width:1250px) {
     .advertisement {
         min-width: auto;
     }
