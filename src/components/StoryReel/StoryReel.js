@@ -6,30 +6,14 @@ function StoryReel() {
     return (
         <div className='storyReel'>
             <Story
-            title={'Zero'} 
-            themeImage={'https://3dnews.ru/assets/external/illustrations/2020/11/16/1025490/generalimage.jpg'}
-            profileImage={'https://www.google.com/gmail/about/static/images/logo-gmail.png?cache=1adba63'}
+            title={'Welcome!'} 
+            themeImage={'https://транслируем.бел/wp-content/uploads/2019/04/facebook-fb-alternate.jpg'}
+            profileImage={'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=829771924246799&height=100&width=100&ext=1616051378&hash=AeRYt60hwUKMzqfd8tw'}
             />
-            <Story
-            title={'Zero'} 
-            themeImage={'https://3dnews.ru/assets/external/illustrations/2020/11/16/1025490/generalimage.jpg'}
-            profileImage={'https://www.google.com/gmail/about/static/images/logo-gmail.png?cache=1adba63'}
-            />
-            <Story
-            title={'Zero'} 
-            themeImage={'https://3dnews.ru/assets/external/illustrations/2020/11/16/1025490/generalimage.jpg'}
-            profileImage={'https://www.google.com/gmail/about/static/images/logo-gmail.png?cache=1adba63'}
-            />
-            <Story
-            title={'Zero'} 
-            themeImage={'https://3dnews.ru/assets/external/illustrations/2020/11/16/1025490/generalimage.jpg'}
-            profileImage={'https://www.google.com/gmail/about/static/images/logo-gmail.png?cache=1adba63'}
-            />
-            <Story
-            title={'Zero'} 
-            themeImage={'https://3dnews.ru/assets/external/illustrations/2020/11/16/1025490/generalimage.jpg'}
-            profileImage={'https://www.google.com/gmail/about/static/images/logo-gmail.png?cache=1adba63'}
-            />
+            <Story/>
+            <Story/>
+            <Story/>
+            <Story/>
         </div>
     )
 }
