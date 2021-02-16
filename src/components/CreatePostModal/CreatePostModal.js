@@ -19,11 +19,12 @@ import useOnClick from '../../utils/useOnClick'
 import db from '../../localfirebase'
 import firebase from 'firebase'
 
-function CreatePostModal({setModalState}) {
+function CreatePostModal() {
     // eslint-disable-next-line
     const overallContextObj = useStateValue()
     const [{user},dispatch] = overallContextObj.user
     const [modalValue, setModalValue] = overallContextObj.modalValue
+    const [modalState,setModalState] = overallContextObj.modalState
     const [rows,setRows] = useState(false)
     
 

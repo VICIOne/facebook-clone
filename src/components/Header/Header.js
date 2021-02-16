@@ -16,7 +16,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import {useStateValue} from '../../StateProvider'
 import {Link, useLocation} from 'react-router-dom'
 import headerOptionsToggler from '../../utils/headerOptionsToggler'
-import CreatePostModal from '../CreatePostModal/CreatePostModal'
 import Settings from '../Settings/Settings'
 import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 
@@ -106,7 +105,6 @@ function Header() {
                     {settingsState?<Settings trigger={settingsBtn} setSettingsState={setSettingsState}/>:null}
                 </div>
             </div>
-            {modalState?<CreatePostModal setModalState={setModalState}/>:null}
             
         </div>
     )

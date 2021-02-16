@@ -7,6 +7,7 @@ import Advertisement from './components/Advertisement/Advertisement'
 import Login from './components/Login/Login'
 import FutureSection from './components/UI/FutureSection/FutureSection'
 import {useStateValue} from './StateProvider'
+import CreatePostModal from './components/CreatePostModal/CreatePostModal'
 import {BrowserRouter as Router,
         Switch,
         Route
@@ -16,6 +17,7 @@ function App() {
   // eslint-disable-next-line
   const overallContextObj = useStateValue()
   const [{user},dispatch] = overallContextObj.user
+  const [modalState,setModalState] = overallContextObj.modalState
   
   return (
     <div className="app">
@@ -50,6 +52,7 @@ function App() {
                   </Route>
                 </Switch>
                 <Advertisement/>
+                {modalState?<CreatePostModal/>:null}
               </div> 
           </Router>
           }
