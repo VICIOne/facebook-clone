@@ -10,24 +10,24 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import GifIcon from '@material-ui/icons/Gif';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import {Avatar} from '@material-ui/core'
 //
-import {useStateValue} from '../../StateProvider'
+import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 import {Link} from 'react-router-dom'
+import {useStateValue} from '../../StateProvider'
 import useOnKeyDown from '../../utils/useOnKeyDown'
 import useOnClick from '../../utils/useOnClick'
 import db from '../../localfirebase'
 import firebase from 'firebase'
 
 function CreatePostModal() {
-    // eslint-disable-next-line
+
     const overallContextObj = useStateValue()
-    const [{user},dispatch] = overallContextObj.user
+    const [user,setUser] = overallContextObj.user
     const [modalValue, setModalValue] = overallContextObj.modalValue
     const [modalState,setModalState] = overallContextObj.modalState
+
     const [rows,setRows] = useState(false)
     
-
     const modalContent = useRef()
     const textArea = useRef()
 
@@ -36,11 +36,10 @@ function CreatePostModal() {
         setModalState(false)
     }
 
-    const change = (e, lettersLimit=56) =>{
-        let value = e.target.value
-        let sumOfRows = Math.ceil(value.length/lettersLimit)
+    const changeRowsSum = (e, lettersLimit=56) =>{
+        let sumOfRows = Math.ceil(e.target.value.length/lettersLimit)
         setRows(sumOfRows>18?18:sumOfRows)
-        setModalValue(value)
+        setModalValue(e.target.value)
     }
 
     const sendPost = (e) =>{
@@ -50,7 +49,7 @@ function CreatePostModal() {
             message: modalValue,
             image: '',
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            profileImage: user.picture.data.url,
+            profileImage: user.profileImage,
             userName: user.name
         })
 
@@ -86,7 +85,7 @@ function CreatePostModal() {
                 <div className="modal__post-creator">
                     <div className="modal__info">
                         <Link to='/profile' className='modal__avatar'>
-                            <Avatar src={user.picture.data.url}/>
+                            <CustomAvatar src={user.profileImage}/>
                         </Link>
                         <div className='modal__preferences'>
                             <p>{user.name}</p>
@@ -97,7 +96,7 @@ function CreatePostModal() {
                             </button>
                         </div>
                     </div>
-                    <textarea ref={textArea} value={modalValue} style={{overflow:`${rows===18?'auto':'hidden'}`,fontSize:`${rows>1?'16px':'26px'}`}} onChange={change} rows={rows>4?rows:4} placeholder={`Whats on your mind, ${user.first_name}?`}></textarea>
+                    <textarea ref={textArea} value={modalValue} style={{overflow:`${rows===18?'auto':'hidden'}`,fontSize:`${rows>1?'16px':'26px'}`}} onChange={changeRowsSum} rows={rows>4?rows:4} placeholder={`Whats on your mind, ${user.first_name}?`}></textarea>
                     <div className="modal__addition">
                         <h3>Add to your post</h3>
                         <div className='modal__options'>

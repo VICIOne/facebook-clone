@@ -10,7 +10,7 @@ import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 function Sidebar() {
     // eslint-disable-next-line
     const overallContextObj = useStateValue()
-    const [{user},dispatch] = overallContextObj.user
+    const [user,setUser] = overallContextObj.user
 
     let location = useLocation()
 
@@ -22,7 +22,7 @@ function Sidebar() {
         <div className="sidebar">
             <Link to="profile">
                 <SidebarRow title={user.name}>
-                    <CustomAvatar height={30} width={30} src={user.picture.data.url} />
+                    <CustomAvatar height={30} width={30} src={user.profileImage} />
                 </SidebarRow>
             </Link>
             <Link to="friends">

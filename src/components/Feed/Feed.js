@@ -4,6 +4,7 @@ import StoryReel from '../StoryReel/StoryReel'
 import MessageSender from '../MessageSender/MessageSender'
 import Post from '../Post/Post'
 import db from '../../localfirebase'
+import Loader from '../UI/Loader/Loader'
 
 const Feed = React.memo(function Feed() {
 
@@ -32,20 +33,24 @@ const Feed = React.memo(function Feed() {
             <StoryReel/>
             <div className="feed__posts">
                 <MessageSender/>
-                {posts.map((item)=>{
-                    return (
-                    <Post
-                        deletePost={deletePost}
-                        profileImage={item.data.profileImage}
-                        message={item.data.message}
-                        image={item.data.image}
-                        userName={item.data.userName}
-                        timestamp={item.data.timestamp}
-                        key={item.id}
-                        id={item.id}
-                    />
-                    )
-                })}
+                {posts.length > 0?
+                    posts.map((item)=>{
+                        return (
+                        <Post
+                            deletePost={item.id==='vpXr1P5Mhazu8Ote6jtH'?()=>null:deletePost}
+                            profileImage={item.data.profileImage}
+                            message={item.data.message}
+                            image={item.data.image}
+                            userName={item.data.userName}
+                            timestamp={item.data.timestamp}
+                            key={item.id}
+                            id={item.id}
+                        />
+                        )
+                    })
+                    :
+                    <Loader width={'100%'} height={'400px'} style={{borderRadius: '20px', marginTop: '40px'}}/>
+                }
             </div>
         </div>
     )

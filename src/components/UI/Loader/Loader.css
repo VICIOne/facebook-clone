@@ -1,0 +1,11 @@
+.loader{
+    background: rgb(216, 218, 223);
+    background: linear-gradient(236deg, rgba(216, 218, 223, 1) 0%, rgba(231, 233, 238, 1) 58%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader>.MuiCircularProgress-root{
+    color: rgba(128, 128, 128, 0.452);
+}

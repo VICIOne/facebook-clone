@@ -4,7 +4,7 @@ import './FutureSection.css'
 function FutureSection({title}) {
     return (
         <div className='futureSection'>
-            <div class="futureSection__content">
+            <div className="futureSection__content">
                 <h4>{title}</h4>
             <h3>* This section can be added in future..</h3>
             </div>

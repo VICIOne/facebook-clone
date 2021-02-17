@@ -3,26 +3,41 @@ import './Login.css'
 import {Button} from '@material-ui/core'
 import {auth, provider} from '../../localfirebase'
 import {useStateValue} from '../../StateProvider'
-import {actionTypes} from '../../reducer'
 
 function Login() {
-    // eslint-disable-next-line
-    const overallContextObj = useStateValue()
-    const [{user},dispatch] = overallContextObj.user
-    const signIn = () =>{
+
+    const signInWithFB = () =>{
         auth.signInWithPopup(provider)
-        .then(res=>{
-            dispatch({
-                type: actionTypes.SET_USER,
-                user: res.additionalUserInfo.profile //payload
-            })
+        .then((res)=>{
+            const response = res.additionalUserInfo
+            const obj = {
+                name: response.profile.name,
+                first_name: response.profile.first_name,
+                last_name: response.profile.last_name,
+                profileImage: response.profile.picture.data.url
+            }
+            localStorage.setItem('currentUserInfo', JSON.stringify(obj))
         })
         .catch(e=>{
-            if(e.code === 'auth/popup-closed-by-user'){
-                return
-            }else{
-                alert(e.message)
+            alert(e.message)
+        })
+    }
+
+    const signInAnonymously = () =>{
+        auth.signInAnonymously()
+        .then((res)=>{
+            console.log(res)
+            // const response = res.additionalUserInfo
+            const obj = {
+                name: 'Anonymous User',
+                first_name: 'Anonym',
+                last_name: 'Anonymous',
+                profileImage: 'https://pronto-core-cdn.prontomarketing.com/2/wp-content/uploads/sites/2375/cache/2021/02/spy-clipart-9-e1538678193587/2613749646.png'
             }
+            localStorage.setItem('currentUserInfo', JSON.stringify(obj))
+        })
+        .catch(e=>{
+            alert(e.message)
         })
     }
     return (
@@ -37,9 +52,12 @@ function Login() {
                 alt=''
                 />
             </div>
-            <Button type='submit' onClick={signIn}>
-                Sign Up via Facebook 
-            </Button>
+            <button className='login__button login__button--blue' onClick={signInWithFB}>
+                Sign In via Facebook 
+            </button>
+            <button className='login__button login__button--grey' onClick={signInAnonymously}>
+                Sign In Anonymously
+            </button>
         </div>
     )
 }

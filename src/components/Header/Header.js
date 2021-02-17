@@ -22,7 +22,7 @@ import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 function Header() {
     // eslint-disable-next-line
     const overallContextObj = useStateValue()
-    const [{user},dispatch] = overallContextObj.user
+    const [user,setUser] = overallContextObj.user
     const [modalState,setModalState] = overallContextObj.modalState
     const [settingsState, setSettingsState] = useState(false)
 
@@ -86,7 +86,7 @@ function Header() {
             </div>
             <div className="header__right">
                 <Link ref={profile} to='/profile' className='header__info'>
-                    <CustomAvatar height={30} width={30} src={user.picture.data.url}/>
+                    <CustomAvatar height={30} width={30} src={user.profileImage}/>
                     <h4>{user.first_name}</h4>
                 </Link>
                 <div className="header__buttons">

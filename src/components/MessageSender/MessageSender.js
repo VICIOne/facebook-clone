@@ -11,13 +11,13 @@ import {useStateValue} from '../../StateProvider'
 function MessageSender() {
     // eslint-disable-next-line
     const overallContextObj = useStateValue()
-    const [{user},dispatch] = overallContextObj.user
+    const [user,setUser] = overallContextObj.user
     const [modalState, setModalState] = overallContextObj.modalState
 
     return (
         <div className='messageSender'>
             <div className="messageSender__top">
-                <CustomAvatar src={user.picture.data.url} height={40} width={40}/>
+                <CustomAvatar src={user.profileImage} height={40} width={40}/>
                 <form className='messageSender__form'>
                     <div className='messageSender__input' onClick={()=>setModalState(true)}>
                         {`What's on your mind, ${user.first_name}?`}

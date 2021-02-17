@@ -11,13 +11,19 @@ import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 import useOnKeyDown from '../../utils/useOnKeyDown'
 import useOnClick from '../../utils/useOnClick'
 import {Link} from 'react-router-dom'
+import firebase from 'firebase'
 
 function Settings({setSettingsState, trigger}) {
     // eslint-disable-next-line
     const overallContextObj = useStateValue()
-    const [{user},dispatch] = overallContextObj.user
+    const [user,setUser] = overallContextObj.user
 
     const settings = useRef()
+
+    const signOut = () =>{
+        firebase.auth().signOut()
+        localStorage.removeItem('currentUserInfo')
+    }
 
     useOnKeyDown('Escape', settings, ()=>setSettingsState(false))
     useOnClick(settings, ()=>setSettingsState(false), trigger.current)
@@ -25,7 +31,7 @@ function Settings({setSettingsState, trigger}) {
     return (
         <div ref={settings} className='settings'>
             <Link to="/profile" className="settigns__option settigns__option--profile" onClick={()=>setSettingsState(false)}>
-                <CustomAvatar height={65} width={65} src={user.picture.data.url}/>
+                <CustomAvatar height={65} width={65} src={user.profileImage}/>
                 <div className='settings__info'>
                     <h3>{user.name}</h3>
                     <p>See your profile</p>
@@ -51,7 +57,7 @@ function Settings({setSettingsState, trigger}) {
                 </div>
                 <ChevronRightIcon fontSize='large'/>
             </div>
-            <div className="settigns__option">
+            <div className="settigns__option" onClick={signOut}>
                 <button className="settings__icon">
                     <ExitToAppIcon/>
                 </button> 
