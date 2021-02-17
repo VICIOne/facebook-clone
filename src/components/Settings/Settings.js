@@ -44,7 +44,7 @@ function Settings({setSettingsState, trigger}) {
                 </button>
                 <div className='settings__info'>
                     <h3>Give feedback</h3>
-                    <p>See your profile</p>
+                    <p>Help us improve the new Facebook</p>
                 </div>
             </div>
             <hr></hr>

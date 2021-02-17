@@ -18,27 +18,18 @@ export function StateProvider({children}) {
     }
     
     useEffect(() => {
-        // setPending(true)
         auth.onAuthStateChanged((currentUser) => {
             if(currentUser){
-                
-                console.log(JSON.parse(localStorage.getItem('currentUserInfo')))
                 setUser(JSON.parse(localStorage.getItem('currentUserInfo')))
                 setPending(false)
                 return
-            }else{
-                setUser(null)
-                setPending(false)
             }
-            // console.log(currentUser)
-            
-            
+            setUser(null)
+            setPending(false)
         });
     }, []);
 
-    if(pending){
-    return <Loader width={'100%'} height={'100vh'}/>
-    }
+    if(pending){return <Loader width={'100%'} height={'100vh'}/>}
 
     return (
         <StateContext.Provider value={overallContextObj}>

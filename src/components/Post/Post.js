@@ -1,8 +1,7 @@
 import React from 'react'
 import './Post.css'
 //Material UI
-// import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-// import CommentIcon from '@material-ui/icons/Comment';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ShareIcon from '@material-ui/icons/Share';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -12,7 +11,8 @@ import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 import {Link} from 'react-router-dom'
 import setEditedTimestamp from '../../utils/dateFrameWork'
 
-function Post({profileImage, image, message, timestamp, userName, deletePost, id}) {
+function Post({profileImage, image, message, timestamp, userName, deletePost, id, likes, putLike}) {
+
     return (
         <div className="post">
             <div className="post__top">
@@ -37,8 +37,14 @@ function Post({profileImage, image, message, timestamp, userName, deletePost, id
             <div className="post__image">
                 <img src={image} alt=''></img>
             </div>
+            <div className='post__likes'>
+                <div className='post__like'>
+                    <ThumbUpIcon fontSize="inherit"/>
+                </div>
+                <p>{likes.length}</p>
+            </div>
             <div className='post__options'>
-                <div className="post__option">
+                <div className="post__option" onClick={()=>putLike(id, likes)}>
                     <FavoriteBorderIcon/>
                     <p>Like</p>
                 </div>

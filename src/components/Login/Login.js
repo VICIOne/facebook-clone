@@ -7,12 +7,13 @@ function Login() {
     const signInWithFB = () =>{
         auth.signInWithPopup(provider)
         .then((res)=>{
-            const response = res.additionalUserInfo
+            const response = res.additionalUserInfo.profile
             const obj = {
-                name: response.profile.name,
-                first_name: response.profile.first_name,
-                last_name: response.profile.last_name,
-                profileImage: response.profile.picture.data.url
+                name: response.name,
+                first_name: response.first_name,
+                last_name: response.last_name,
+                profileImage: response.picture.data.url,
+                id: response.id
             }
             localStorage.setItem('currentUserInfo', JSON.stringify(obj))
         })
@@ -28,7 +29,8 @@ function Login() {
                 name: 'Anonymous User',
                 first_name: 'Anonym',
                 last_name: 'Anonymous',
-                profileImage: 'https://pronto-core-cdn.prontomarketing.com/2/wp-content/uploads/sites/2375/cache/2021/02/spy-clipart-9-e1538678193587/2613749646.png'
+                profileImage: 'https://pronto-core-cdn.prontomarketing.com/2/wp-content/uploads/sites/2375/cache/2021/02/spy-clipart-9-e1538678193587/2613749646.png',
+                id: '01'
             }
             localStorage.setItem('currentUserInfo', JSON.stringify(obj))
         })

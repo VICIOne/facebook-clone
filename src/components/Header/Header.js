@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, {useState, useRef} from 'react'
 import './Header.css'
 //Material Ui
 import SearchIcon from '@material-ui/icons/Search';
