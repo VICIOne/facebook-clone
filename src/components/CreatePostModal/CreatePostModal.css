@@ -27,7 +27,7 @@
     font-size: 20px;
 }
 
-.modal__btn-close {
+.modal__close {
     position: absolute;
     top: 17px;
     right: 17px;
@@ -38,7 +38,7 @@
     background-color: #e4e6ebc4;
 }
 
-.modal__btn-close:hover {
+.modal__close:hover {
     background-color: #e4e6eb;
 }
 
@@ -49,12 +49,20 @@
     margin-top: 20px;
 }
 
-.modal__post-creator {
+.modal__editor {
     display: flex;
     width: 100%;
     flex-direction: column;
     margin-top: 15px;
     flex: 1;
+}
+
+.modal__editor>textarea {
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    resize: none;
+    min-height: 150px;
 }
 
 .modal__info{
@@ -89,15 +97,6 @@
     padding: 5px;
     margin-left: 5px;
     background-color: RGB(228, 230, 235);
-}
-
-.modal__post-creator>textarea {
-    margin-top: 20px;
-    border: none;
-    outline: none;
-    resize: none;
-    min-height: 150px;
-    max-height: 300px;
 }
 
 .modal__addition{
@@ -159,9 +158,11 @@
     display: flex;
     align-items: center;
     height: 70px;
+    width: 100%;
+    text-decoration: none;
 }
 
-.modal__send-btn{
+.modal__send>button {
     height: 40px;
     border-radius: 5px;
     width: 100%;
@@ -170,15 +171,15 @@
     outline: none;
 }
 
-.modal__send-btn:disabled {
+.modal__send>button:disabled {
     cursor: not-allowed;
 }
 
-.modal__send-btn:enabled{
+.modal__send>button:enabled {
     background-color: #2e81f4;
     color: white;
 }
 
-.modal__send-btn:enabled:active {
+.modal__send>button:enabled:active {
     transform: scale(0.97);
 }

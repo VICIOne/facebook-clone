@@ -1,8 +1,6 @@
 import React from 'react'
 import './Login.css'
-import {Button} from '@material-ui/core'
 import {auth, provider} from '../../localfirebase'
-import {useStateValue} from '../../StateProvider'
 
 function Login() {
 
@@ -25,9 +23,7 @@ function Login() {
 
     const signInAnonymously = () =>{
         auth.signInAnonymously()
-        .then((res)=>{
-            console.log(res)
-            // const response = res.additionalUserInfo
+        .then(()=>{
             const obj = {
                 name: 'Anonymous User',
                 first_name: 'Anonym',

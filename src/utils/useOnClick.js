@@ -16,6 +16,5 @@ export default function useOnClick(ref, handler, trigger) {
         return () => {
             document.removeEventListener("mousedown", listener);
         };
-        // eslint-disable-next-line
     }, []);
 }

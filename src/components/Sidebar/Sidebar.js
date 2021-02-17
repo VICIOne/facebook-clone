@@ -1,22 +1,15 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import SidebarRow from '../SidebarRow/SidebarRow'
 import './Sidebar.css'
 import ArrowDropDownOutlinedIcon from '@material-ui/icons/ArrowDropDownOutlined';
 import {useStateValue} from '../../StateProvider'
-import {Link, useLocation} from 'react-router-dom'
-import headerOptionsToggler from '../../utils/headerOptionsToggler'
+import {Link} from 'react-router-dom'
 import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 
 function Sidebar() {
-    // eslint-disable-next-line
+
     const overallContextObj = useStateValue()
     const [user,setUser] = overallContextObj.user
-
-    let location = useLocation()
-
-    useEffect(() => {
-       headerOptionsToggler(location)
-    }, [location])
 
     return (
         <div className="sidebar">

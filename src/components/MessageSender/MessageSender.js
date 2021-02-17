@@ -9,7 +9,7 @@ import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 import {useStateValue} from '../../StateProvider'
 
 function MessageSender() {
-    // eslint-disable-next-line
+
     const overallContextObj = useStateValue()
     const [user,setUser] = overallContextObj.user
     const [modalState, setModalState] = overallContextObj.modalState
@@ -22,28 +22,21 @@ function MessageSender() {
                     <div className='messageSender__input' onClick={()=>setModalState(true)}>
                         {`What's on your mind, ${user.first_name}?`}
                     </div>
-                    <button 
-                    type='submit'
-                    >
-                    Hidden submit
-                    </button>
+                    <button type='submit'>Hidden submit</button>
                 </form>
             </div>
             <hr></hr>
             <div className='messageSender__bottom'>
                 <div className="messageSender__option">
-                    <VideocamIcon 
-                    style={{color:'red'}}/>
+                    <VideocamIcon style={{color:'red'}}/>
                     <h3>Live Video</h3>
                 </div>
                 <div className="messageSender__option">
-                    <PhotoLibraryIcon 
-                    style={{color:'green'}}/>
+                    <PhotoLibraryIcon style={{color:'green'}}/>
                     <h3>Photo/Video</h3>
                 </div>
                 <div className="messageSender__option">
-                    <MoodIcon 
-                    style={{color:'orange'}}/>
+                    <MoodIcon style={{color:'orange'}}/>
                     <h3>Feeling/Activity</h3>
                 </div>
             </div>

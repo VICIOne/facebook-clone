@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import './Feed.css'
+//
 import StoryReel from '../StoryReel/StoryReel'
 import MessageSender from '../MessageSender/MessageSender'
 import Post from '../Post/Post'
@@ -36,16 +37,16 @@ const Feed = React.memo(function Feed() {
                 {posts.length > 0?
                     posts.map((item)=>{
                         return (
-                        <Post
-                            deletePost={item.id==='vpXr1P5Mhazu8Ote6jtH'?()=>null:deletePost}
-                            profileImage={item.data.profileImage}
-                            message={item.data.message}
-                            image={item.data.image}
-                            userName={item.data.userName}
-                            timestamp={item.data.timestamp}
-                            key={item.id}
-                            id={item.id}
-                        />
+                            <Post
+                                deletePost={item.id==='vpXr1P5Mhazu8Ote6jtH'?()=>null:deletePost} //prevention of deleting initial "welcome" post 
+                                profileImage={item.data.profileImage}
+                                message={item.data.message}
+                                image={item.data.image}
+                                userName={item.data.userName}
+                                timestamp={item.data.timestamp}
+                                key={item.id}
+                                id={item.id}
+                            />
                         )
                     })
                     :

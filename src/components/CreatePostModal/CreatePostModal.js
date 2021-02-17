@@ -36,15 +36,18 @@ function CreatePostModal() {
         setModalState(false)
     }
 
-    const changeRowsSum = (e, lettersLimit=56) =>{
+    const changeRowsSum = (e) =>{
+        const lettersLimit = 56
+        const maxSumOfRaws = 18
+        //General quantity of textarea letters divided to lettersLimit
         let sumOfRows = Math.ceil(e.target.value.length/lettersLimit)
-        setRows(sumOfRows>18?18:sumOfRows)
+        //Limitation of sumOfRows to 18
+        setRows(sumOfRows>maxSumOfRaws?maxSumOfRaws:sumOfRows)
+
         setModalValue(e.target.value)
     }
 
-    const sendPost = (e) =>{
-        e.preventDefault()
-
+    const sendPost = () =>{
         db.collection('posts').add({
             message: modalValue,
             image: '',
@@ -57,19 +60,18 @@ function CreatePostModal() {
         setModalValue('')
     }
 
-    useOnKeyDown('Escape', modalContent, closeModal)
-    useOnClick(modalContent, ()=>closeModal())
+    useOnKeyDown('Escape', modalContent, closeModal)//@check custom hook useOnKeyDown
+    useOnClick(modalContent, ()=>closeModal())//@check custom hook useOnClick
 
     useEffect(() => {
-            document.body.style.overflow = 'hidden'
-            //focus at the end of textarea
-            textArea.current.value = ''
-            textArea.current.value = modalValue
-            textArea.current.focus()
+        document.body.style.overflow = 'hidden'
+        //focus at the end of textarea
+        textArea.current.value = ''
+        textArea.current.value = modalValue
+        textArea.current.focus()
         return () => {
-            document.body.style.overflow = 'auto'
+        document.body.style.overflow = 'auto'
         }
-        // eslint-disable-next-line
     }, [])
 
     return (
@@ -77,12 +79,12 @@ function CreatePostModal() {
             <div ref={modalContent} className='modal__content'>
                 <div className='modal__header'>
                     <p>Create post</p>
-                    <button className='modal__btn-close' onClick={closeModal}>
+                    <button className='modal__close' onClick={closeModal}>
                         <CloseIcon/>
                     </button>
                 </div>
                 <hr></hr>
-                <div className="modal__post-creator">
+                <div className="modal__editor">
                     <div className="modal__info">
                         <Link to='/profile' className='modal__avatar'>
                             <CustomAvatar src={user.profileImage}/>
@@ -120,9 +122,11 @@ function CreatePostModal() {
                             </button>
                         </div>
                     </div>
-                    <div className='modal__send'>
-                        <button onClick={sendPost} disabled={!modalValue} className="modal__send-btn"><span>Post</span></button>
-                    </div>
+                    <Link to='/' className='modal__send'>
+                        <button onClick={sendPost} disabled={!modalValue} className="modal__send-btn">
+                            <span>Post</span>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

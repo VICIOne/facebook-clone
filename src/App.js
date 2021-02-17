@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import './App.css';
 import Header from './components/Header/Header'
 import Sidebar from './components/Sidebar/Sidebar'
@@ -14,7 +14,7 @@ import {BrowserRouter as Router,
         } from 'react-router-dom'
 
 function App() {
-  // eslint-disable-next-line
+  
   const overallContextObj = useStateValue()
   const [user, setUser] = overallContextObj.user
   const [modalState,setModalState] = overallContextObj.modalState

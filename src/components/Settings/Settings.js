@@ -14,7 +14,7 @@ import {Link} from 'react-router-dom'
 import firebase from 'firebase'
 
 function Settings({setSettingsState, trigger}) {
-    // eslint-disable-next-line
+
     const overallContextObj = useStateValue()
     const [user,setUser] = overallContextObj.user
 
@@ -25,8 +25,8 @@ function Settings({setSettingsState, trigger}) {
         localStorage.removeItem('currentUserInfo')
     }
 
-    useOnKeyDown('Escape', settings, ()=>setSettingsState(false))
-    useOnClick(settings, ()=>setSettingsState(false), trigger.current)
+    useOnKeyDown('Escape', settings, ()=>setSettingsState(false))//@check custom hook useOnKeyDown
+    useOnClick(settings, ()=>setSettingsState(false), trigger.current)//@check custom hook useOnClick
 
     return (
         <div ref={settings} className='settings'>
