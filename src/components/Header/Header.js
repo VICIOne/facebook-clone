@@ -14,7 +14,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
 //
 import {useStateValue} from '../../StateProvider'
-import {Link, useLocation} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import Settings from '../Settings/Settings'
 import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 
@@ -27,8 +27,6 @@ function Header() {
     const [settingsState, setSettingsState] = useState(false)
 
     const settingsBtn = useRef()
-
-    let location = useLocation()
 
     return (
         <div className="header">
@@ -46,41 +44,41 @@ function Header() {
             </div>
             <div className="header__center">
                 <div className='header__options'>
-                    <Link to='/' className={location.pathname === '/'?'header__option header__option--active':'header__option'}>
+                    <NavLink to='/' exact activeClassName='header__option--active' className='header__option'>
                         <div className="header__option__container" >
                             <HomeIcon fontSize="large"/>
                         </div> 
-                    </Link>
-                    <Link to='/friends' className={location.pathname === '/friends'?'header__option header__option--active':'header__option'} >
+                    </NavLink>
+                    <NavLink to='/friends' activeClassName='header__option--active' className='header__option' >
                         <div className="header__option__container">
                             <PeopleOutlineIcon fontSize="large"/>
                         </div>
-                    </Link>
-                    <Link to='/watch' className={location.pathname === '/watch'?'header__option header__option--active':'header__option'} >
+                    </NavLink>
+                    <NavLink to='/watch' activeClassName='header__option--active' className='header__option' >
                         <div className="header__option__container">
                             <LiveTvIcon fontSize="large"/>
                         </div>
-                    </Link>
-                    <Link to='/groups' className={location.pathname === '/groups'?'header__option header__option--active':'header__option'} >
+                    </NavLink>
+                    <NavLink to='/groups' activeClassName='header__option--active' className='header__option' >
                         <div className="header__option__container">
                             <SupervisedUserCircleIcon fontSize="large"/>
                         </div>
-                    </Link>
-                    <Link to='/games' className={location.pathname === '/games'?'header__option header__option--active':'header__option'} >
+                    </NavLink>
+                    <NavLink to='/games' activeClassName='header__option--active' className='header__option' >
                         <div className="header__option__container">
                             <SportsEsportsIcon fontSize="large"/>
                         </div>
-                    </Link>
+                    </NavLink>
                 </div>
                 <div className="header__burger">
                     <MenuIcon/>
                 </div>
             </div>
             <div className="header__right">
-                <Link to='/profile' className={location.pathname === '/profile'?'header__info header__info--active':'header__info'}>
+                <NavLink to='/profile' className='header__info' activeClassName='header__info--active'>
                     <CustomAvatar height={30} width={30} src={user.profileImage}/>
                     <h4>{user.first_name}</h4>
-                </Link>
+                </NavLink>
                 <div className="header__buttons">
                     <button className='header__button' onClick={()=>setModalState(true)}>
                         <AddIcon />

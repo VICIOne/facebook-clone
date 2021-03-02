@@ -6,13 +6,12 @@ import MessageSender from '../MessageSender/MessageSender'
 import Post from '../Post/Post'
 import db from '../../localfirebase'
 import Loader from '../UI/Loader/Loader'
-import {useStateValue} from '../../StateProvider'
 
 const Feed = React.memo(function Feed() {
 
-    const overallContextObj = useStateValue()
-
     const [posts, setPosts] = useState([])
+
+    const userId = JSON.parse(localStorage.getItem('currentUserInfo')).id
 
     useEffect(()=>{
         db.collection('posts')
@@ -33,12 +32,11 @@ const Feed = React.memo(function Feed() {
     }
 
     const putLike = (docId,likes) =>{
-        const userId = JSON.parse(localStorage.getItem('currentUserInfo')).id
         const indexOfUser = likes.indexOf(userId) 
 
         let newLikes
 
-        if(indexOfUser>=0){
+        if(likes.includes(userId)){
             newLikes = likes.slice(0, indexOfUser).concat(likes.slice(indexOfUser + 1))
         }else{
             newLikes = [...likes, userId]
@@ -65,9 +63,10 @@ const Feed = React.memo(function Feed() {
                                 userName={item.data.userName}
                                 timestamp={item.data.timestamp}
                                 key={item.id}
-                                id={item.id}
+                                docId={item.id}
                                 likes={item.data.likes}
                                 putLike={putLike}
+                                userId={userId}
                             />
                         )
                     })

@@ -6,13 +6,13 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ShareIcon from '@material-ui/icons/Share';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import RemoveIcon from '@material-ui/icons/Remove';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 //
 import CustomAvatar from '../UI/CustomAvatar/CustomAvatar'
 import {Link} from 'react-router-dom'
 import setEditedTimestamp from '../../utils/dateFrameWork'
 
-function Post({profileImage, image, message, timestamp, userName, deletePost, id, likes, putLike}) {
-
+function Post({profileImage, image, message, timestamp, userName, deletePost, docId, likes, putLike, userId}) {
     return (
         <div className="post">
             <div className="post__top">
@@ -27,7 +27,7 @@ function Post({profileImage, image, message, timestamp, userName, deletePost, id
                     <Link to={'/profile'}>{userName}</Link>
                     <p>{setEditedTimestamp(timestamp)}</p>
                 </div>
-                <button className='post__delete' onClick={()=>setTimeout(()=>deletePost(id),500)}>
+                <button className='post__delete' onClick={()=>setTimeout(()=>deletePost(docId),500)}>
                     <RemoveIcon/>
                 </button>
             </div>
@@ -35,7 +35,7 @@ function Post({profileImage, image, message, timestamp, userName, deletePost, id
                 <p>{message}</p>
             </div>
             <div className="post__image">
-                <img src={image} alt=''></img>
+                {image?<img src={image} alt=''></img>:null}
             </div>
             <div className='post__likes'>
                 <div className='post__like'>
@@ -44,8 +44,12 @@ function Post({profileImage, image, message, timestamp, userName, deletePost, id
                 <p>{likes.length}</p>
             </div>
             <div className='post__options'>
-                <div className="post__option" onClick={()=>putLike(id, likes)}>
+                <div className='post__option' onClick={()=>putLike(docId, likes)}>
+                    {likes.includes(userId)?
+                    <FavoriteIcon style={{color:'#0571ED'}}/>
+                    :
                     <FavoriteBorderIcon/>
+                    }
                     <p>Like</p>
                 </div>
                 <div className="post__option">

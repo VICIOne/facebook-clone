@@ -53,7 +53,8 @@ function CreatePostModal() {
             image: '',
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             profileImage: user.profileImage,
-            userName: user.name
+            userName: user.name,
+            likes: []
         })
 
         setModalState(false)

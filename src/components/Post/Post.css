@@ -57,7 +57,7 @@
 }
 
 .post__message {
-    padding: 15px 15px;
+    padding: 15px;
     font-size: 1.125rem;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .post__likes{
-    margin: 5px;
+    margin: 5px 15px;
     display: flex;
     align-items: center;
 }
@@ -104,6 +104,10 @@
     justify-content: center;
     padding: 5px;
     border-radius: 7px;
+}
+
+.post__option--liked{
+    color: blue;
 }
 
 .post__option:hover {
