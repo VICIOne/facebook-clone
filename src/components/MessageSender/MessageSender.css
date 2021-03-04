@@ -72,3 +72,9 @@
     cursor: pointer;
     background-color: rgba(128, 128, 128, 0.100);
 }
+
+@media (max-width:510px) {
+    .messageSender__bottom {
+        display: none;
+    }
+}

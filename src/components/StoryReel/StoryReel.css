@@ -4,3 +4,14 @@
     column-gap: 10px;
 }
 
+@media (max-width:570px) {
+    .storyReel{
+        grid-template-columns: repeat(4 , 1fr);
+    }
+}
+
+@media (max-width:460px) {
+    .storyReel {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
